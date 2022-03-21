@@ -1,0 +1,56 @@
+```mermaid
+flowchart TD;
+	0(Início) --> A;
+	A(Teste 1: \n Gateway CopperHill + Cabo CopperHill \n Conectar diretamente na porta da carregadeira \n e habilitar gateway para escutar a rede \n >WinXP e software CopperHill< \n >250 kbps e resistor terminação ativo<);
+	A --> B{Pacotes \n capturados?};
+	B-- NÃO -->C;
+	C[Alterar para 500 kpbs];
+	C --> D{Pacotes \n capturados?};
+	D-- NÃO --> E;
+	E[Desativar resistor \n e alterar para 250 kpbs];
+	E --> F{Pacotes \n capturados?};
+	F-- NÃO -->G;
+	G[Alterar para 500 kbps];
+	G --> H{Pacotes \n capturados?};
+	H-- NÃO --> I;
+	I(Teste 2: \n Gateway CopperHill + Cabo Derivação montado \n Fazer conecção em T e utilizar software CAT \n > 250 kbps + resistor desativado<);
+	I --> J{Software CAT \n normal?};
+	J-- NÃO --> K;
+	K[Desconectar gateway];
+	K --> L{Software CAT \n normal?};
+	L-- NÃO --> M;
+	M(Cabo Derivação montado \n com defeito);
+	M --> N(Fim do teste \n >refazer cabo<);
+	J-- SIM --> O;
+	O[Habilitar gateway para escutar a rede \n >WinXP e software CopperHill< \n];
+	L-- SIM --> P;
+	P[Ativar resistor e \n reconectar gateway];
+	P --> Q{Software CAT \n normal?};
+	Q-- NÃO --> R;
+	R(Gateway atrapalha \n comunicação);
+	R --> S(Fim do teste \n >estudar gateway<);
+	Q-- SIM --> O;
+	O --> T{Pacotes \n capturados?};
+	T-- NÃO --> U;
+	U[Comutar resistor ou \n taxa de comunicação];
+	U --> V{Pacotes \n capturados?};
+	V-- NÃO --> X;
+	X(Fim do teste \n >estudar gateway<);
+	B-- SIM --> Z1;
+	Z1[Gravar pacotes em arquivo \n para estudo posterior];
+	D-- SIM --> Z1;
+	F-- SIM --> Z1;
+	H-- SIM --> Z1;
+	Z1 --> I;
+	T-- SIM --> Z2;
+	Z2[Gravar pacotes em arquivo \n para estudo posterior];
+	V-- SIM -->Z2;
+	Z2 --> A1;
+	A1(Teste 3: \n Utilizar software próprio e \n comparar valores obtidos \n com leitura do software CAT \n em paralelo \n >manter cabo derivação montado< \n >temperatura de óleo< \n >posição do pedal acelerador< \n >posição da válvula borboleta<)
+	A1 --> B1{Sucesso?};
+	B1-- NÃO --> C1;
+	C1[Revisar código próprio];
+	C1 --> B1;
+	B1-- SIM --> D1;
+	D1(Teste concluído\n com sucesso!)	
+```
